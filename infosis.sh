@@ -10,12 +10,13 @@ echo ""
 
 echo "Información de la CPU:"
 echo "----------------------"
-lscpu | grep -e "Nombre del modelo:" -e "Arquitectura:" -e "CPU(s):" -e "CPU MHz máx.:"
-echo ""
+cat /proc/cpuinfo | grep -m 1 "model name"
+echo "Arquitectura:"
+cat /proc/version | grep -i --color 'x86_64'
 
 echo "Memoria RAM:"
 echo "-------------------------------"
 lspci | grep -i --color 'RAM memory:'
-free -h
+cat /proc/meminfo | grep -i --color 'Memtotal:'
 echo ""
 
