@@ -35,22 +35,39 @@ while true; do
         printf "\n\n$R Usuario o contraseña incorrectos. Intente nuevamente.$W\n\n"
     fi
 done
+
 while true; do
     # Leer la entrada del usuario
     printf "${M}${username}${W}:${G}$(pwd)${W} # "; read command
-
-    # Salir si el usuario escribe "salir"
-    if [[ "$command" == "salir" ]]; then
-        printf "\t ______  __   __  ________          _____              _           _   ___ ___ ___ ___ ___ \n"
-        printf "\t|  __  ||  | |  ||___  ___|        |_   _|__ _ _ _ __ (_)_ _  __ _| | | _ \ _ \ __| _ ) __|\n"
-        printf "\t| |__| ||  |_|  |   |  |             | |/ -_) '_| '  \| | ' \/ _' | | |  _/   / _|| _ \ _| \n"
-        printf "\t|______||_______|   |__|             |_|\___|_| |_|_|_|_|_||_\__,_|_| |_| |_|_\___|___/___|\n"
-        exit 0
+    case $command in
+    salir)
+    exec ./salir.sh
+    break
+    ;;
+    ayuda)
+    ./ayuda.sh
+    ;;
+    infosis)
+    ./infosis.sh
+    ;;
+    infodia)
+    ./infodia.sh
+    ;;
+    MP3)
+    ./MP3.sh
+    ;;
+    buscar)
+    ./buscar.sh
+    ;;
+    creditos)
+    ./creditos.sh
+    ;;
+    *)
+    if command "$command" >/dev/null 2>&1; then
+                "$command"
+       else 
+    printf "El comando $R$command$W no existe. Utiliza ayuda para verificar los comandos disponibles.\n"
     fi
-
-    # Ejecutar el comando ingresado
-    output=$(eval "$command" 2>&1)
-
-    # Mostrar la salida del comando
-    echo
-done
+    ;;
+    esac
+done 
