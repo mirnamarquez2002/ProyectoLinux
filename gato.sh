@@ -84,27 +84,47 @@ do
 	  echo "#####################################################"
           echo "||                                                 ||"
           echo "||                Inserta la letra :               ||"
-          echo "||            A. para jugar(fila) (columna)        ||"
+          echo "||            A. para jugar Ej: A (fila) (columna) ||"
           echo "||            B. Reset                             ||"
-          echo "||                                                 ||"
+          echo "||            C. Salir                             ||"
           echo "#####################################################"
           echo ""
    
           while true
           do
-            read -r inputCommand a b
-            if [ $inputCommand == "jugar" ]
-            then 
- 		setInput $a $b $symbol
-                break
-            elif [ $inputCommand == "reset" ]
-            then 
-                iniciarjuego
-                break
-            else
-	        echo ""
-                echo "Comando no disponible, intenta otra vez"
-	    fi
+          printf "Teclea una letra: ";read -r inputCommand a b
+          case $inputCommand in
+          "A")
+          setInput $a $b $symbol
+          break
+          ;;
+          "B")
+          iniciarjuego       
+          ;;        
+          "C")
+          exit 0
+          break
+          ;;
+          *)
+          echo ""
+          echo "Comando no disponible, intenta otra vez"
+          ;;
+          esac
+          
+          
+            #read -r inputCommand a b
+            #if [ $inputCommand == "A" ]
+            #then 
+ 		#setInput $a $b $symbol
+                #break
+            #elif [ $inputCommand == "reset" ]
+            #then 
+             #   iniciarjuego
+             #   break
+            #else
+	     #   echo ""
+              #  echo "Comando no disponible, intenta otra vez"
+	    #fi
           done
    
 	  checarganador
