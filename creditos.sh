@@ -1,6 +1,6 @@
 clear
 echo -e "\e[97;41m*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\e[0m"
-echo -e "\e[97;41m| El essarrollo de esta terminal |\e[0m"
+echo -e "\e[97;41m| El desarrollo de esta terminal|\e[0m"
 echo -e "\e[97;41m|    fue posible gracias a:    |\e[0m" 
 echo -e "\e[97;41m*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*\e[0m"
 echo -e "\e[97;41m| Márquez Sánchez Mirna Daniela |\e[0m"
