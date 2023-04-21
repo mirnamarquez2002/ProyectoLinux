@@ -12,3 +12,5 @@ echo -e "${azul}busca${reset_color}: Busca un archivo en un directorio específi
 echo -e "${azul}jugar${reset_color}: Ejecuta el juego del sistema"
 echo -e "${azul}creditos${reset_color}: Muestra los créditos del programa"
 echo -e "${azul}MP3${reset_color}: Abrirá un reproductor de mp3"
+echo -e "${azul}gato${reset_color}: Abrirá el juego gato"
+echo -e "${azul}ahorcado${reset_color}: Abrirá el juego ahorcado"
