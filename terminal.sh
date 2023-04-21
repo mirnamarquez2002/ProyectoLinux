@@ -9,6 +9,16 @@ M='\033[1;35m' # Mangenta
 W='\033[0m' # Blanco
 Glig='\e[1;32m' # Verde claro
 
+#Para no salirse
+
+ignore_signal() {
+    printf "Se ha detectado la señal $1. No se permite salir. Usa el comando 'salir' para cerrar la terminal.\n"
+}
+
+# Configurar la función ctrl + c/z
+trap 'ignore_signal SIGINT' SIGINT
+trap 'ignore_signal SIGTSTP' SIGTSTP
+
 # Sistema de acceso para los usuarios
 # ==-==-==-==-==-==-==-==-==-==-==-==-
 clear
@@ -61,6 +71,12 @@ while true; do
     ;;
     creditos)
     ./creditos.sh
+    ;;
+    gato)
+    ./gato.sh
+    ;;
+    ahorcado)
+    ./ahorcado.sh
     ;;
     *)
     if command "$command" >/dev/null 2>&1; then
