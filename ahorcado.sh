@@ -1,47 +1,52 @@
 #!/bin/bash
 
- echo "====================================================="
-    echo "| |              JUEGO DE AHORCADO                | |"
-    echo "| |          Elige una opcion del 1 al 4          | |"
-    echo "| |              TIENES 5 INTENTOS                | |"
-    echo "====================================================="
+#Palabras creadas
+palabras=("raton" "hormiga" "perro" "gato" "caballo" "elefante" "girafa" "tigre" "leon" "aguila")
 
-pa=$((( $RANDOM%4 ) + 1 ))
-case $pa in
-1)op="Otorrinolaringologo"
-echo "Doctor que se encarga de las enfermedades del oído"
-;;
-2)op="Calidoscopio"
-echo "Instrumento óptico donde puedes ver figuras en su interior"
-;;
-3)op="Paralepipedo"
-echo "Poliedro de 6 caras"
-;;
-4)op="Mejor jugador de futbol"
-echo "Messi"
-;;
-esac
-k="${op:0:1}"
-x=${#op}
+# Elegir una palabra al azar
+palabrarandom=$(( RANDOM % ${#palabras[@]} ))
+palabra="${palabras[$palabrarandom]}"
+largo=${#palabra}
 
-for n in $(seq 2 1 $x)
-do
-    k=$k" _"
+
+adivinarpalabra=""
+for (( i=0; i<$largo; i++ )); do
+    adivinarpalabra+="_"
 done
-echo ""
-echo "$k"
-intentos=5
 
-while [ "$xd" != "$op" ] && [ "$intentos" != "0" ]
-do
-echo "Te quedan $intentos intentos"
-let intentos--
-echo "$k"
-read -r xd
+intentos_restantes=7
+palabras_adivinadas=""
+
+while [[ $adivinarpalabra != $palabra && $itentosrestantes -gt 0 ]]; do
+    echo "Palabra a adivinar: $adivinarpalabra"
+    echo "Letras ya intentadas: $palabras_adivinadas"
+    echo "Intentos restantes: $itentosrestantes"
+    read -p "Introduce una letra: " -n 1 -r
+    echo
+
+    if [[ $palabras_adivinadas == "$REPLY" ]]; then
+        echo "Ya intentaste con esa letra, prueba otra."
+        continue
+    fi
+
+    palabras_adivinadas+="$REPLY"
+
+    if [[ $palabra == "$REPLY" ]]; then
+        for (( i=0; i<$largo; i++ )); do
+            if [[ ${palabra:$i:1} == $REPLY ]]; then
+                adivinarpalabra="${adivinarpalabra:0:$i}$REPLY${adivinarpalabra:$((i+1))}"
+            fi
+        done
+        echo "¡BIEN! vas por buen camino '$REPLY'."
+    else
+        itentosrestantes=$(( itentosrestantes - 1 ))
+        echo "La letra '$REPLY' no está en la palabra, -1 vida."
+    fi
+    echo
 done
-if [ "$intentos" = "0" ]
-then
-	echo -e "Perdiste :("
+
+if [[ $adivinarpalabra == $palabra ]]; then
+    echo "¡WUUUUUUU! Adivinaste la palabra: $palabra"
 else
-	echo -e "¡¡¡¡GANASTE WUUUUUUU!!! :)"
+    echo "chin :(, no adivinaste la palabra correcta era: $palabra"
 fi
