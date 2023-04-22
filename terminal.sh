@@ -23,11 +23,11 @@ trap 'ignore_signal SIGTSTP' SIGTSTP
 # ==-==-==-==-==-==-==-==-==-==-==-==-
 clear
 
-printf "\t  _____              _           _   ___ ___ ___ ___ ___ \n"
-printf "\t |_   _|__ _ _ _ __ (_)_ _  __ _| | | _ \ _ \ __| _ ) __|\n"
-printf "\t   | |/ -_) '_| '  \| | ' \/ _' | | |  _/   / _|| _ \ _| \n"
-printf "\t   |_|\___|_| |_|_|_|_|_||_\__,_|_| |_| |_|_\___|___/___|\n"
-printf "\n\t\t\tI n i c i o   d e   s e s i ó n\n"
+printf "\t  ===================================================== \n"
+printf "\t  | |      HOLA BIENVENID@ A NUESTRA TERMINAL       | |\n"
+printf "\t  | |              MIRNA & HUGO                     | |  \n"
+printf "\t  | |       p r o y e c t o     L I N U X           | |\n"
+printf "\n\t\t----I N I C I O    D E   S E S I O N----\n"
 
 # ==-==-==-==-> Solicitud de datos (interacion con el usuario)
 # solicitar el nombre de usuario y la contraseña
@@ -74,9 +74,6 @@ while true; do
     ;;
     gato)
     ./gato.sh
-    ;;
-    ahorcado)
-    ./ahorcado.sh
     ;;
     *)
     if command "$command" >/dev/null 2>&1; then
